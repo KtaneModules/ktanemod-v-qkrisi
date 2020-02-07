@@ -115,7 +115,8 @@ public class qkV : MonoBehaviour
 
     string getWordInCommon(int index)
     {
-        string[] temp = new[] {"Voilà","View","Vaudevillian","Veteran","Vicariously","Victim","Villian","Vicissitudes","Visage","Veneer","Vanity","Vestige","Vacant","Vanished","Valorous","Visitiation","Vexation","Vivified","Vowed","Vanquish","Venal","Virulent","Vermin","Vanguarding","Vice","Vouchsafing","Violently","Vicious","Voracious","Violation","Volition","Verdict","Vengeance","Vendetta","Votive","Vain","Value","Veracity","Vindicate","Vigilant","Virtuous","Verily","Vichyssoise","Verbiage","Veers","Verbose","Very","V"};        int ind = 0;
+        string[] temp = new[] {"Voilà","View","Vaudevillian","Veteran","Vicariously","Victim","Villian","Vicissitudes","Visage","Veneer","Vanity","Vestige","Vacant","Vanished","Valorous","Visitiation","Vexation","Vivified","Vowed","Vanquish","Venal","Virulent","Vermin","Vanguarding","Vice","Vouchsafing","Violently","Vicious","Voracious","Violation","Volition","Verdict","Vengeance","Vendetta","Votive","Vain","Value","Veracity","Vindicate","Vigilant","Virtuous","Verily","Vichyssoise","Verbiage","Veers","Verbose","Very","V"};
+        int ind = 0;
         foreach(string word in temp)
         {
             if(currentWords.Contains(word))

@@ -8198,7 +8198,7 @@ MonoBehaviour:
   m_Script: {fileID: -119419473, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModuleType: qkV
+  ModuleType: V
   ModuleDisplayName: V
   RequiresTimerVisibility: 0
 --- !u!114 &114662898784304458
@@ -8530,7 +8530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShaderNames:
-  - KT/Mobile/Diffuse
+  - KT/Mobile/DiffuseTint
 --- !u!114 &114882612138852532
 MonoBehaviour:
   m_ObjectHideFlags: 1
