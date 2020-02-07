@@ -144,7 +144,7 @@ public class qkV : MonoBehaviour
             int num = 0;
             if(int.TryParse(command, out num))
             {
-                if(num>0 && num<6)
+                if(num>0 && num<7)
                 {
                     yield return null;
                     Children[num-1].OnInteract();
