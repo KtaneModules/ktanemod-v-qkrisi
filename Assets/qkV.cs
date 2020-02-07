@@ -18,6 +18,7 @@ public class qkV : MonoBehaviour
     private bool rule2 = false;
     private bool rule3 = false;
     private bool rule4 = false;
+    private bool rule5 = false;
 
     private string correctWord = "";
 
@@ -27,13 +28,16 @@ public class qkV : MonoBehaviour
     private bool solved = false;
 
     private KMSelectable[] Children;
+
+    private GameObject General;
     void Start()
     {
         moduleId=moduleIdCounter++;
+        General=transform.Find("Buttons").gameObject;
         shuffled = allWords;
         wordList = shuffled.Shuffle().ToList();
         Children=GetComponent<KMSelectable>().Children;
-        for(int i = 0;i<5;i++)
+        for(int i = 0;i<6;i++)
         {
             int index = rnd.Range(0,wordList.Count);
             currentWords.Add(wordList[index]);
@@ -43,15 +47,16 @@ public class qkV : MonoBehaviour
         rule2=GetComponent<KMBombInfo>().GetOnIndicators().Count()==2;
         rule3=Array.Exists(GetComponent<KMBombInfo>().GetModuleNames().ToArray(), item=>item.ToUpperInvariant().StartsWith("V") && item!="V");
         rule4=GetComponent<KMBombInfo>().GetBatteryCount(Battery.AA)>GetComponent<KMBombInfo>().GetBatteryCount(Battery.D);
-        correctWord=rule1 || rule2 || rule3 || rule4 ? getWordInCommon(rule1 ? 3 : rule2 ? 5 : rule3 ? 4 : 1) : currentWords[1];
-        Debug.LogFormat("[V #{0}] Words are: {1}, {2}, {3}, {4}, {5}", moduleId, currentWords[0], currentWords[1], currentWords[2], currentWords[3], currentWords[4]);
-        Debug.LogFormat("[V #{0}] Rule {1} applied.", moduleId, rule1 ? 1 : rule2 ? 2 : rule3 ? 3 : rule4 ? 4 : 5);
+        rule5=GetComponent<KMBombInfo>().GetModuleNames().Count%3==0;
+        correctWord=rule1 || rule2 || rule3 || rule4 || rule5 ? getWordInCommon(rule1 ? 3 : rule2 ? 5 : rule3 ? 4 : rule4 ? 1 : 6) : currentWords[1];
+        Debug.LogFormat("[V #{0}] Words are: {1}, {2}, {3}, {4}, {5}, {6}", moduleId, currentWords[0], currentWords[1], currentWords[2], currentWords[3], currentWords[4], currentWords[5]);
+        Debug.LogFormat("[V #{0}] Rule {1} applied.", moduleId, rule1 ? 1 : rule2 ? 2 : rule3 ? 3 : rule4 ? 4 : rule5 ? 5 : 6);
         Debug.LogFormat("[V #{0}] Correct word to press is {1}.", moduleId, correctWord);
         for(int i = 0;i<Children.Length;i++)
         {
             KMSelectable Selectable = Children[i];
-            Selectable.transform.Find("Text").GetComponent<TextMesh>().text=currentWords[i];
-            Selectable.OnInteract += () => buttonInteract(Selectable, Selectable.transform.Find("Text").GetComponent<TextMesh>().text);
+            Selectable.transform.Find("Faces").Find("Face1").Find("Text").GetComponent<TextMesh>().text=currentWords[i];
+            Selectable.OnInteract += () => buttonInteract(Selectable, Selectable.transform.Find("Faces").Find("Face1").Find("Text").GetComponent<TextMesh>().text);
         }
         return;
     }
@@ -65,40 +70,43 @@ public class qkV : MonoBehaviour
         {
             foreach(KMSelectable Selectable in Children)
             {
-                Selectable.transform.Find("Text").GetComponent<TextMesh>().text="";
+                Selectable.transform.Find("Faces").Find("Face1").Find("Text").GetComponent<TextMesh>().text="";
             }
             solved=true;
             Debug.LogFormat("[V #{0}] Correct word pressed! Solving module...", moduleId);
+            General.SetActive(false);
             GetComponent<KMBombModule>().HandlePass();
             return false;
         }
-        OnStrike();
+        OnStrike(text);
         return false;
     }
 
-    void OnStrike()
+    void OnStrike(string text)
     {
-        Reset();
+        Reset(text);
         GetComponent<KMBombModule>().HandleStrike();
         return;
     }
-    void Reset()
+    void Reset(string text)
     {
-        Debug.LogFormat("[V #{0}] Strike! Resetting module...", moduleId);
+        Debug.LogFormat("[V #{0}] Strike by pressing button {1}! Resetting module...", moduleId, text);
         shuffled=allWords;
         wordList = shuffled.Shuffle().ToList();
         currentWords.Clear();
-        for(int i = 0;i<5;i++)
+        for(int i = 0;i<6;i++)
         {
             int index = rnd.Range(0,wordList.Count);
             currentWords.Add(wordList[index]);
             wordList.RemoveAt(index);
         }
-        correctWord=rule1 || rule2 || rule3 || rule4 ? getWordInCommon(rule1 ? 3 : rule2 ? 5 : rule3 ? 4 : 1) : currentWords[1];
+        correctWord=rule1 || rule2 || rule3 || rule4 || rule5 ? getWordInCommon(rule1 ? 3 : rule2 ? 5 : rule3 ? 4 : rule4 ? 1 : 6) : currentWords[1];
+        Debug.Log(currentWords.Count);
         for(int i = 0;i<Children.Length;i++)
         {
             KMSelectable Selectable = Children[i];
-            Selectable.transform.Find("Text").GetComponent<TextMesh>().text=currentWords[i];
+            Selectable.transform.Find("Faces").Find("Face1").Find("Text").GetComponent<TextMesh>().text=currentWords[i];
+            Selectable.OnInteract += () => buttonInteract(Selectable, Selectable.transform.Find("Faces").Find("Face1").Find("Text").GetComponent<TextMesh>().text);
         }
         Debug.LogFormat("[V #{0}] Words are: {1}, {2}, {3}, {4}, {5}", moduleId, currentWords[0], currentWords[1], currentWords[2], currentWords[3], currentWords[4]);
         Debug.LogFormat("[V #{0}] Correct word to press is {1}.", moduleId, correctWord);
@@ -145,7 +153,7 @@ public class qkV : MonoBehaviour
                 yield return "sendtochaterror Number out of range!";
                 yield break;
             }
-            string[] Words = new[] {currentWords[0].ToUpperInvariant(), currentWords[1].ToUpperInvariant(), currentWords[2].ToUpperInvariant(), currentWords[3].ToUpperInvariant(), currentWords[4].ToUpperInvariant()};
+            string[] Words = new[] {currentWords[0].ToUpperInvariant(), currentWords[1].ToUpperInvariant(), currentWords[2].ToUpperInvariant(), currentWords[3].ToUpperInvariant(), currentWords[4].ToUpperInvariant(), currentWords[5].ToUpperInvariant()};
             if(Words.Contains(command))
             {
                 yield return null;
