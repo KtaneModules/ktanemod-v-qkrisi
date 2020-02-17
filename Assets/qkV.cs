@@ -133,7 +133,7 @@ public class qkV : MonoBehaviour
 
     #pragma warning disable 414
     [HideInInspector]
-    public string TwitchHelpMessage = "Use '!{0} press <word>' or '!{0} press <position of button in reading order>' to press a button!";
+    public string TwitchHelpMessage = "Use '!{0} press <word>' or '!{0} press <position of button>' to press a button! (See manual for ordering information!)";
     #pragma warning restore 414
     IEnumerator ProcessTwitchCommand(string command)
     {
