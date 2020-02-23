@@ -8,7 +8,7 @@ using rnd = UnityEngine.Random;
 
 public class qkV : MonoBehaviour
 {
-    private readonly string[] allWords = new[] {"Voilà","View","Vaudevillian","Veteran","Vicariously","Victim","Villian","Vicissitudes","Visage","Veneer","Vanity","Vestige","Vacant","Vanished","Valorous","Visitiation","Vexation","Vivified","Vowed","Vanquish","Venal","Virulent","Vermin","Vanguarding","Vice","Vouchsafing","Violently","Vicious","Voracious","Violation","Volition","Verdict","Vengeance","Vendetta","Votive","Vain","Value","Veracity","Vindicate","Vigilant","Virtuous","Verily","Vichyssoise","Verbiage","Veers","Verbose","Very","V"};
+    private readonly string[] allWords = new[] {"Voilà","View","Vaudevillian","Veteran","Vicariously","Victim","Villian","Vicissitudes","Visage","Veneer","Vanity","Vestige","Vacant","Vanished","Valorous","Visitation","Vexation","Vivified","Vowed","Vanquish","Venal","Virulent","Vermin","Vanguarding","Vice","Vouchsafing","Violently","Vicious","Voracious","Violation","Volition","Verdict","Vengeance","Vendetta","Votive","Vain","Value","Veracity","Vindicate","Vigilant","Virtuous","Verily","Vichyssoise","Verbiage","Veers","Verbose","Very","V"};
     
     private string[] shuffled = new string[] {};
     private List<string> wordList = new List<string>();
@@ -115,7 +115,7 @@ public class qkV : MonoBehaviour
 
     string getWordInCommon(int index)
     {
-        string[] temp = new[] {"Voilà","View","Vaudevillian","Veteran","Vicariously","Victim","Villian","Vicissitudes","Visage","Veneer","Vanity","Vestige","Vacant","Vanished","Valorous","Visitiation","Vexation","Vivified","Vowed","Vanquish","Venal","Virulent","Vermin","Vanguarding","Vice","Vouchsafing","Violently","Vicious","Voracious","Violation","Volition","Verdict","Vengeance","Vendetta","Votive","Vain","Value","Veracity","Vindicate","Vigilant","Virtuous","Verily","Vichyssoise","Verbiage","Veers","Verbose","Very","V"};
+        string[] temp = new[] {"Voilà","View","Vaudevillian","Veteran","Vicariously","Victim","Villian","Vicissitudes","Visage","Veneer","Vanity","Vestige","Vacant","Vanished","Valorous","Visitation","Vexation","Vivified","Vowed","Vanquish","Venal","Virulent","Vermin","Vanguarding","Vice","Vouchsafing","Violently","Vicious","Voracious","Violation","Volition","Verdict","Vengeance","Vendetta","Votive","Vain","Value","Veracity","Vindicate","Vigilant","Virtuous","Verily","Vichyssoise","Verbiage","Veers","Verbose","Very","V"};
         int ind = 0;
         foreach(string word in temp)
         {
