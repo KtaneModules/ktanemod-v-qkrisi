@@ -27,6 +27,6 @@ MonoBehaviour:
     ID: V
 
     Manual: https://ktane.timwi.de/HTML/V.html'
-  version: 1.0.1
+  version: 1.0.2
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 6320b88c3cbfb4834bc16f9e8e748fb9, type: 3}
