@@ -108,7 +108,7 @@ public class qkV : MonoBehaviour
             Selectable.transform.Find("Faces").Find("Face1").Find("Text").GetComponent<TextMesh>().text=currentWords[i];
             Selectable.OnInteract += () => buttonInteract(Selectable, Selectable.transform.Find("Faces").Find("Face1").Find("Text").GetComponent<TextMesh>().text);
         }
-        Debug.LogFormat("[V #{0}] Words are: {1}, {2}, {3}, {4}, {5}", moduleId, currentWords[0], currentWords[1], currentWords[2], currentWords[3], currentWords[4]);
+        Debug.LogFormat("[V #{0}] Words are: {1}, {2}, {3}, {4}, {5}, {6}", moduleId, currentWords[0], currentWords[1], currentWords[2], currentWords[3], currentWords[4], currentWords[5]);
         Debug.LogFormat("[V #{0}] Correct word to press is {1}.", moduleId, correctWord);
         return;
     }
