@@ -44,7 +44,7 @@ public class qkV : MonoBehaviour
             wordList.RemoveAt(index);
         }
         rule1=GetComponent<KMBombInfo>().GetModuleIDs().ToArray().Intersect(new[] {"WireSequence", "Wires", "WhosOnFirst", "NeedyVentGas", "Simon", "Password", "Morse", "Memory", "Maze", "NeedyKnob", "Keypad", "Venn", "NeedyCapacitor", "BigButton"}).Any();
-        rule2=GetComponent<KMBombInfo>().GetOnIndicators().Count()==2;
+        rule2=GetComponent<KMBombInfo>().GetOnIndicators().Count()>=2;
         rule3=Array.Exists(GetComponent<KMBombInfo>().GetModuleNames().ToArray(), item=>item.ToUpperInvariant().StartsWith("V") && item!="V");
         rule4=GetComponent<KMBombInfo>().GetBatteryCount(Battery.AA)>GetComponent<KMBombInfo>().GetBatteryCount(Battery.D);
         rule5=GetComponent<KMBombInfo>().GetModuleNames().Count%3==0;
